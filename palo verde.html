@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propuesta Integral - PALOVERDE 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #60474e;    /* Malva profundo */
+            --secondary: #8b5e7d;  /* Ciruela */
+            --accent: #a38499;     /* Púrpura mate */
+            --slate: #475569;      /* Gris acero */
+            --light: #cecfdc;      /* Lavanda claro */
+            --pardo: #b3a29e;      /* Gris pardo */
+            --sky-blue: #ABDADC;   /* Azul Estratégico / Acero */
+            --white: #FFFFFF;
+            --offwhite: #F8FAFC;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #f1f5f9; 
+            color: var(--primary);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        .infographic-canvas { width: 100%; position: relative; }
+
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 94%;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            padding: 50px 20px;
+            text-align: center;
+        }
+        
+        .branding-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .logo-capsule {
+            background: var(--white);
+            padding: 12px 35px; 
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 3px solid var(--sky-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 260px;
+        }
+        .logo-img { height: 100px; width: auto; object-fit: contain; }
+
+        .badge { 
+            display: inline-block; padding: 8px 25px; border: 2.5px solid var(--sky-blue); 
+            color: var(--sky-blue); text-transform: uppercase; letter-spacing: 4px; 
+            font-size: 11px; font-weight: 800; margin-bottom: 10px; border-radius: 50px; 
+            background: rgba(255,255,255,0.1);
+        }
+        .proposal-date { font-size: 13px; text-transform: uppercase; letter-spacing: 3px; color: white; margin-bottom: 15px; opacity: 0.8; font-weight: 600; }
+
+        h1 { font-family: 'Playfair Display', serif; font-size: 42px; line-height: 1.1; margin-bottom: 12px; }
+        .hero-sub { font-size: 19px; font-weight: 500; max-width: 900px; margin: 0 auto; color: var(--sky-blue); line-height: 1.4; }
+
+        /* --- ESTRUCTURA UNIFICADA (600PX) --- */
+        section { padding: 35px 0; width: 100%; display: flex; justify-content: center; }
+        
+        .section-frame {
+            display: flex;
+            background: var(--white);
+            border-radius: 40px;
+            overflow: visible; 
+            box-shadow: 0 15px 40px rgba(96, 71, 78, 0.08);
+            border: 1px solid var(--pardo);
+            height: 600px; 
+            width: 100%;
+            position: relative;
+        }
+
+        .frame-content {
+            flex: 1;
+            padding: 40px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .frame-visual {
+            flex: 0 0 42%;
+            position: relative;
+            background: var(--offwhite);
+            overflow: hidden;
+            border-radius: 0 40px 40px 0;
+        }
+        
+        .frame-visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        .full-width-box { width: 100%; padding: 30px 60px; display: flex; flex-direction: column; justify-content: center; }
+
+        /* --- TÍTULOS --- */
+        .section-title { border-left: 10px solid var(--secondary); padding-left: 20px; margin-bottom: 20px; }
+        .section-title h2 { 
+            font-family: 'Playfair Display', serif; font-size: 34px !important; 
+            color: var(--primary); line-height: 1.2; font-weight: 700;
+        }
+        .section-title p { font-size: 11px; text-transform: uppercase; color: var(--secondary); font-weight: 800; letter-spacing: 5px; }
+
+        /* --- BADGE DE EXPERIENCIA (CENTREDO SUPERIOR) --- */
+        .experience-badge { 
+            position: absolute; 
+            top: -25px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            background: var(--primary); 
+            color: var(--white); 
+            padding: 15px 40px; 
+            border-radius: 20px; 
+            text-align: center; 
+            border: 3px solid var(--sky-blue); 
+            z-index: 50; 
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+            min-width: 320px;
+        }
+        .experience-badge span { display: block; font-size: 42px; font-weight: 900; line-height: 1; color: var(--sky-blue); }
+        .experience-badge label { display: block; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; }
+
+        /* --- SECCIÓN 3: MAPA GRÁFICO DE ATENCIÓN (4 NODOS) --- */
+        .attention-map-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 100%;
+            position: relative;
+            margin-top: 20px;
+            gap: 15px;
+        }
+        .attention-map-wrapper::before {
+            content: "";
+            position: absolute;
+            top: 55px;
+            left: 10%;
+            right: 10%;
+            height: 3px;
+            background: var(--light);
+            z-index: 1;
+        }
+        .map-node-card {
+            flex: 1;
+            background: var(--white);
+            border: 2px solid var(--pardo);
+            border-radius: 25px;
+            padding: 25px 15px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 370px;
+            justify-content: flex-start;
+        }
+        .node-icon-hex {
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            color: var(--sky-blue);
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 15px;
+            border: 3px solid var(--white);
+        }
+        .map-node-card h4 { font-weight: 800; font-size: 15px; color: var(--primary); margin-bottom: 12px; text-transform: uppercase; line-height: 1.2; height: 36px; display: flex; align-items: center; }
+        .map-node-card .role-label { background: var(--offwhite); padding: 6px 12px; border-radius: 50px; font-weight: 800; font-size: 11px; color: var(--secondary); margin-bottom: 12px; border: 1px solid var(--light); text-transform: uppercase; }
+        .map-node-card p { font-size: 13px; color: var(--slate); line-height: 1.4; }
+
+        /* --- SECCIÓN 4: CALENDARIO FINANCIERO --- */
+        .financial-grid { display: flex; flex-direction: column; gap: 20px; width: 100%; padding: 20px; }
+        .financial-card {
+            background: var(--white);
+            border-radius: 25px;
+            padding: 30px;
+            border-left: 12px solid var(--sky-blue);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .financial-card:hover { transform: scale(1.03); }
+        .financial-card h6 { color: var(--primary); font-weight: 800; letter-spacing: 2px; font-size: 14px; margin-bottom: 5px; text-transform: uppercase; }
+        .financial-card .date-val { color: var(--secondary); font-size: 52px; font-weight: 900; line-height: 1; margin-bottom: 5px; }
+        .financial-card .date-sub { color: var(--slate); font-weight: 600; font-size: 12px; text-transform: uppercase; }
+
+        /* --- SECCIÓN 6: DISEÑO HORIZONTAL DE ETAPAS (FLECHAS) --- */
+        .stages-row {
+            display: flex;
+            width: 100%;
+            gap: 5px;
+            margin-top: 10px;
+            height: 280px;
+        }
+        .stage-box {
+            flex: 1;
+            position: relative;
+            padding: 35px 20px 20px 45px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            color: white;
+            clip-path: polygon(0% 0%, 85% 0%, 100% 50%, 85% 100%, 0% 100%, 15% 50%);
+            transition: 0.3s ease;
+        }
+        .stage-box:first-child { clip-path: polygon(0% 0%, 85% 0%, 100% 50%, 85% 100%, 0% 100%); padding-left: 25px; }
+        .stage-box:last-child { clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 15% 50%); padding-right: 25px; }
+        .stage-box .num { font-size: 40px; font-weight: 900; opacity: 0.3; line-height: 1; margin-bottom: 15px; }
+        .stage-box h5 { font-size: 15px; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; }
+        .stage-box p { font-size: 12px; line-height: 1.3; }
+
+        .s1 { background-color: var(--sky-blue); color: var(--primary); }
+        .s2 { background-color: var(--accent); }
+        .s3 { background-color: var(--secondary); }
+        .s4 { background-color: var(--primary); }
+
+        /* --- SECCIÓN 8: SERVICIOS PÚBLICOS --- */
+        .utility-box { display: grid; gap: 15px; width: 100%; }
+        .utility-card { 
+            background: var(--offwhite); 
+            padding: 20px 25px; 
+            border-radius: 20px; 
+            border: 1px solid var(--pardo); 
+            display: flex; 
+            align-items: center; 
+            gap: 20px; 
+        }
+        .utility-icon { 
+            width: 60px; 
+            height: 60px; 
+            background: var(--primary); 
+            color: var(--sky-blue); 
+            border-radius: 15px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 24px; 
+            flex-shrink: 0; 
+        }
+        .utility-card div { flex: 1; }
+        .utility-card h5 { font-weight: 800; font-size: 17px; color: var(--primary); margin-bottom: 2px; }
+        .utility-card p { font-size: 13px; color: var(--slate); line-height: 1.3; }
+
+        /* --- SECCIÓN 12: ENTORNO --- */
+        .grid-balanced { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; width: 100%; }
+        .card-balanced { background: var(--offwhite); padding: 18px 25px; border-radius: 15px; border-left: 6px solid var(--secondary); border: 1px solid var(--pardo); text-align: left; }
+        .card-balanced h5 { font-weight: 800; font-size: 17px; color: var(--primary); margin-bottom: 3px; }
+        .banner-balanced {
+            background: var(--primary); color: white; padding: 20px; border-radius: 25px; margin-top: 25px; 
+            display: flex; justify-content: space-around; border: 3px solid var(--sky-blue);
+        }
+        .item-stat { text-align: center; }
+        .item-stat span { display: block; font-size: 28px; font-weight: 900; color: var(--sky-blue); line-height: 1; }
+        .item-stat label { font-size: 10px; text-transform: uppercase; font-weight: 800; display: block; }
+
+        /* --- SECCIÓN 13: REFERENCIAS --- */
+        .ref-list-simple {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            width: 100%;
+        }
+        .ref-item-box {
+            background: var(--offwhite);
+            padding: 15px 25px;
+            border-radius: 20px;
+            border-left: 8px solid var(--secondary);
+            border: 1px solid var(--pardo);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .ref-item-box i { font-size: 20px; color: var(--sky-blue); }
+        .ref-item-box h5 { font-size: 16px; font-weight: 800; color: var(--primary); font-family: 'Playfair Display', serif; }
+
+        /* --- PROPUESTA ECONÓMICA --- */
+        .fees-split { display: flex; width: 100%; height: 100%; }
+        .fees-main { flex: 1.3; padding: 40px 60px; display: flex; flex-direction: column; justify-content: center; }
+        .expenses-box { flex: 0.7; background: var(--primary); color: white; padding: 40px 25px; display: flex; flex-direction: column; justify-content: center; border-left: 2px solid var(--pardo); }
+        .fee-card-refined { 
+            background: var(--offwhite); border-radius: 20px; padding: 15px 35px; 
+            margin-bottom: 12px; border: 3px solid var(--sky-blue); display: flex; 
+            justify-content: space-between; align-items: center; 
+        }
+        .fee-label { font-size: 20px; font-weight: 800; color: var(--primary); text-transform: uppercase; }
+        .fee-price { font-family: 'Playfair Display'; font-size: 36px; font-weight: 900; color: var(--secondary); }
+
+        .check-list li { margin-bottom: 10px; font-size: 15px; display: flex; align-items: flex-start; gap: 12px; }
+        .check-list i { color: var(--sky-blue); font-size: 16px; margin-top: 3px; }
+
+        footer { background: var(--primary); color: var(--white); padding: 50px 20px; text-align: center; border-top: 8px solid var(--sky-blue); }
+
+        @media (max-width: 1000px) {
+            .section-frame { height: auto; flex-direction: column; }
+            .attention-map-wrapper { flex-direction: column; align-items: center; }
+            .attention-map-wrapper::before { display: none; }
+            .map-node-card { width: 100%; height: auto; }
+            .stages-row { flex-direction: column; height: auto; clip-path: none; gap: 10px; }
+            .stage-box { clip-path: none !important; padding: 20px !important; }
+            .ref-list-simple { grid-template-columns: 1fr; }
+            .experience-badge { min-width: auto; width: 90%; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="infographic-canvas">
+    <!-- PORTADA -->
+    <header>
+        <div class="content-wrapper">
+            <div class="branding-row">
+                <div class="logo-capsule"><img src="https://i.postimg.cc/1ttP8hhZ/logo-idear.png" alt="IDEAR" class="logo-img"></div>
+                <div class="logo-capsule"><img src="https://i.postimg.cc/j2qSRtR2/logo-palo-verde.jpg" alt="PALOVERDE" class="logo-img"></div>
+            </div>
+            <div class="badge">Propuesta Estratégica 2026 - Conjunto PALOVERDE</div>
+            <div class="proposal-date">Enero 2026</div>
+            <h1>Gestión Integral de Propiedad Horizontal</h1>
+            <p class="hero-sub">Nuestra gestión se centra en realizar un trabajo sinérgico junto con el Consejo de Administración para aumentar el bienestar y valorizar el patrimonio de los propietarios.</p>
+        </div>
+    </header>
+
+    <!-- 1. PERFIL PROFESIONAL -->
+    <section>
+        <div class="content-wrapper">
+            <div class="section-frame">
+                <div class="experience-badge"><span>20</span><label>AÑOS DE APRENDIZAJE</label></div>
+                <div class="frame-content">
+                    <div class="section-title"><p>Liderazgo Senior</p><h2>1. Perfil Profesional</h2></div>
+                    <p style="text-align: justify; margin-bottom: 15px;">
+                        <strong>Andrea García</strong> es Contadora Pública egresada de la <strong>Universidad San Buenaventura de Cali, especializada en propiedad horizontal</strong>, con una trayectoria sólida de 20 años.
+                    </p>
+                    <p style="font-size: 15px; color: var(--slate); border-left: 5px solid var(--sky-blue); padding-left: 15px; margin-bottom: 20px;">
+                        <em>"Por ética profesional, el servicio contable es desarrollado por un profesional externo bajo mis lineamientos estratégicos."</em>
+                    </p>
+                    <div style="background: var(--offwhite); padding: 15px; border-radius: 15px; border: 1px solid var(--pardo); font-size: 14px;">
+                        <p><strong><i class="fa-solid fa-check" style="color:var(--secondary)"></i> Persona Natural:</strong> Andrea García</p>
+                        <p><strong><i class="fa-solid fa-check" style="color:var(--secondary)"></i> Persona Jurídica:</strong> Idear Servicios S.A.S.</p>
+                    </div>
+                </div>
+                <div class="frame-visual">
+                    <img src="https://i.postimg.cc/FsL3bjqF/pexels-thirdman-5583258.jpg" alt="Andrea García">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. METODOLOGÍA -->
+    <section class="bg-alt">
+        <div class="content-wrapper">
+            <div class="section-frame" style="background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);">
+                <div class="frame-content" style="color: white; text-align: center; align-items: center;">
+                    <div class="section-title" style="border-left-color: var(--sky-blue); text-align: left; align-self: flex-start;">
+                        <p style="color: var(--sky-blue)">Visión</p>
+                        <h2 style="color: white;">2. Metodología de Administración</h2>
+                    </div>
+                    <p style="font-size: 22px; margin-bottom: 40px; font-weight: 300; background: rgba(0,0,0,0.15); padding: 25px; border-radius: 25px;">
+                        Trabajo sinérgico <strong>junto con el Consejo</strong> para elevar el bienestar y asegurar la <strong>valorización del patrimonio</strong> de los propietarios de Paloverde.
+                    </p>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%;">
+                        <div style="background: rgba(255,255,255,0.2); padding: 25px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.4);"><i class="fa-solid fa-handshake-simple" style="color: var(--sky-blue); font-size: 32px; margin-bottom: 10px;"></i><h5 style="font-size: 20px; font-weight: 800;">Sinergia</h5></div>
+                        <div style="background: rgba(255,255,255,0.2); padding: 25px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.4);"><i class="fa-solid fa-heart-pulse" style="color: var(--sky-blue); font-size: 32px; margin-bottom: 10px;"></i><h5 style="font-size: 20px; font-weight: 800;">Bienestar</h5></div>
+                        <div style="background: rgba(255,255,255,0.2); padding: 25px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.4);"><i class="fa-solid fa-gem" style="color: var(--sky-blue); font-size: 32px; margin-bottom: 10px;"></i><h5 style="font-size: 20px; font-weight: 800;">Patrimonio</h5></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. ESQUEMA DE ATENCIÓN -->
+    <section>
+        <div class="content-wrapper">
+            <div class="section-frame">
+                <div class="full-width-box">
+                    <div class="section-title"><p>Soporte 360°</p><h2>3. Esquema de Atención Integral</h2></div>
+                    <div class="attention-map-wrapper">
+                        <div class="map-node-card">
+                            <div class="node-icon-hex"><i class="fa-solid fa-business-time"></i></div>
+                            <h4>Atención Administrativa</h4>
+                            <div class="role-label">Soporte L-V</div>
+                            <p style="text-align: left; margin-top: 5px;">• Presencia Lunes a Viernes<br>• Atención a Residentes<br>• Supervisión de personal<br>• Recorridos de inspección</p>
+                        </div>
+                        <div class="map-node-card" style="background: #fdfafb; border-color: var(--secondary);">
+                            <div class="node-icon-hex" style="background: var(--secondary); color: white;"><i class="fa-solid fa-user-tie"></i></div>
+                            <h4>Gerencia Estratégica</h4>
+                            <div class="role-label" style="background: var(--secondary); color: white;">Supervisión PH</div>
+                            <p><strong>Andrea García</strong></p>
+                            <p>Liderazgo técnico y estratégico. Supervisión permanente de la gestión operativa y financiera.</p>
+                        </div>
+                        <div class="map-node-card" style="border-color: #c0392b;">
+                            <div class="node-icon-hex" style="background:#c0392b"><i class="fa-solid fa-phone-volume"></i></div>
+                            <h4>Emergencias</h4>
+                            <div class="role-label" style="color:#c0392b">Protocolo 24/7</div>
+                            <p>Respuesta inmediata vía vigilancia, Contratos con especialistas y protocolos de escalamiento.</p>
+                        </div>
+                        <div class="map-node-card">
+                            <div class="node-icon-hex"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                            <h4>Canales Digitales</h4>
+                            <div class="role-label">Omnicanal</div>
+                            <p>WhatsApp Business, Correo Corporativo y <strong>Axesa App</strong> para PQRS y reservas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. MANEJO FINANCIERO -->
+    <section class="bg-alt">
+        <div class="content-wrapper">
+            <div class="section-frame" style="background: var(--primary);">
+                <div class="frame-content" style="color: white; padding-right: 50px;">
+                    <div class="section-title" style="border-left-color: var(--sky-blue);"><p style="color: var(--sky-blue)">Arquitectura Contable</p><h2 style="color: white;">4. Manejo Financiero</h2></div>
+                    <p style="font-size: 18px; margin-bottom: 25px; opacity: 0.9; line-height: 1.4;">Nuestra gestión contable genera información estratégica para la toma de decisiones del Consejo.</p>
+                    <ul class="check-list">
+                        <li><i class="fa-solid fa-check-double" style="font-size: 20px; color: var(--sky-blue);"></i> Registro contable conforme a normas <strong>NIIF</strong>.</li>
+                        <li><i class="fa-solid fa-check-double" style="font-size: 20px; color: var(--sky-blue);"></i> Control de pagos bajo cronograma de Tesorería.</li>
+                        <li><i class="fa-solid fa-check-double" style="font-size: 20px; color: var(--sky-blue);"></i> Conciliaciones bancarias y monitoreo de flujos.</li>
+                        <li><i class="fa-solid fa-check-double" style="font-size: 20px; color: var(--sky-blue);"></i> Informes enviados 3 días antes de cada Consejo.</li>
+                    </ul>
+                </div>
+                <div class="frame-visual" style="background: rgba(255,255,255,0.05); display: flex; flex-direction: column; justify-content: center;">
+                    <div class="financial-grid">
+                        <div class="financial-card">
+                            <h6>Emisión de Recibos</h6>
+                            <div class="date-val">Día 05</div>
+                            <div class="date-sub">Facturación Mensual</div>
+                        </div>
+                        <div class="financial-card">
+                            <h6>Cierre y Balances</h6>
+                            <div class="date-val">Día 20</div>
+                            <div class="date-sub">Entrega de Estados Financieros</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. CONTROL DE PROVEEDORES Y CONTRATOS -->
+    <section>
+        <div class="content-wrapper">
+            <div class="section-frame">
+                <div class="frame-visual"><img src="https://i.postimg.cc/hj2ByyCy/pexels-shkrabaanthony-5816283.jpg" alt="Proveedores"></div>
+                <div class="frame-content">
+                    <div class="section-title"><p>Vigilancia Técnica</p><h2>5. Control de Proveedores y Contratos</h2></div>
+                    <p style="font-size: 15px; margin-bottom: 20px; text-align: justify; color: var(--slate);">
+                        Establecemos un plan con cronograma definido bajo revisión física diaria. Para autorización de pagos, los proveedores deben anexar informes detallados de actividades.
+                    </p>
+                    <div style="display: grid; gap: 10px;">
+                        <div style="background: var(--offwhite); padding: 12px 20px; border-radius: 12px; border: 1px solid var(--pardo); font-size: 14px;">
+                            <i class="fa-solid fa-clipboard-check" style="color:var(--secondary)"></i> Seguimiento y revisión física diaria.
+                        </div>
+                        <div style="background: var(--offwhite); padding: 12px 20px; border-radius: 12px; border: 1px solid var(--pardo); font-size: 14px;">
+                            <i class="fa-solid fa-file-invoice" style="color:var(--secondary)"></i> Informes físicos para autorización de pagos.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. MANEJO DE CARTERA (DISEÑO HORIZONTAL DE ETAPAS) -->
+    <section class="bg-alt">
+        <div class="content-wrapper">
+            <div class="section-frame">
+                <div class="full-width-box">
+                    <div class="section-title" style="text-align: center; border-left: none; padding-left: 0; margin-bottom: 40px;">
+                        <p style="letter-spacing: 5px;">Recaudo Efectivo</p>
+                        <h2 style="font-size: 44px !important;">6. Gestión de Cobro & Cartera</h2>
+                    </div>
+                    <div class="stages-row">
+                        <div class="stage-box s1"><div class="num">01</div><h5>Facturación</h5><p>Día 05: Envío masivo e identificación inicial.</p></div>
+                        <div class="stage-box s2"><div class="num">02</div><h5>Seguimiento</h5><p>Día 15: Gestión persuasiva y recordatorios.</p></div>
+                        <div class="stage-box s3"><div class="num">03</div><h5>Mora Crítica</h5><p>2+ Cuotas: Suspensión de áreas sociales.</p></div>
+                        <div class="stage-box s4"><div class="num">04</div><h5>Cobro Jurídico</h5><p>3+ Cuotas: Traslado a abogados especializados.</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. GESTIÓN DE MANTENIMIENTO (TEXTO COMPLETO SOLICITADO) -->
+    <section>
+        <div class="content-wrapper">
+            <div class="section-frame">
+                <div class="frame-visual"><img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=1000" alt="Ingeniería"></div>
+                <div class="frame-content">
+                    <div class="section-title"><p>Gestión de Activos</p><h2>7. Gestión de Mantenimiento</h2></div>
+                    <p style="font-size: 14px; color: var(--slate); text-align: justify; margin-bottom: 15px;">
+                        Se establece desde el recibo de la copropiedad, mediante un recorrido general para validar el estado de los bienes comunes. Se realizan reuniones con proveedores existentes o se solicita concepto técnico para definir contratos, identificar vida útil y determinar necesidades preventivas o correctivas.
+                    </p>
+                    <p style="font-size: 14px; color: var(--slate); text-align: justify; margin-bottom: 20px;">
+                        Con base en ello, se realizan las cotizaciones necesarias para ser presentadas al Consejo y definir su ejecución con cargo al presupuesto aprobado o mediante cuota extraordinaria.
+                    </p>
+                    <div style="display: grid; gap: 10px;">
+                        <div style="background: var(--offwhite); padding: 12px 20px; border-radius: 12px; border: 1px solid var(--pardo); font-size: 13px;">
+                            <i class="fa-solid fa-clipboard-list" style="color:var(--secondary)"></i> Diagnóstico técnico inicial de bienes comunes.
+                        </div>
+                        <div style="background: var(--primary); padding: 12px 20px; border-radius: 12px; color: white; font-size: 13px;">
+                            <i class="fa-solid fa-file-invoice-dollar" style="color:var(--sky-blue)"></i> Planeación financiera para ejecución.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. GESTIÓN DE SERVICIOS PÚBLICOS (TEXTO EXPLICATIVO RESTAURADO) -->
+    <section class="bg-alt">
+        <div class="content-wrapper">
+            <div class="section-frame">
+                <div class="frame-content">
+                    <div class="section-title"><p>Sostenibilidad</p><h2>8. Gestión de Servicios Públicos</h2></div>
+                    <div class="utility-box">
+                        <div class="utility-card">
+                            <div class="utility-icon"><i class="fa-solid fa-bolt"></i></div>
+                            <div>
+                                <h5>Energía Eléctrica</h5>
+                                <p>Protocolos de alta eficiencia para reducir costos operativos y optimizar el consumo en áreas comunes.</p>
+                            </div>
+                        </div>
+                        <div class="utility-card">
+                            <div class="utility-icon"><i class="fa-solid fa-droplet"></i></div>
+                            <div>
+                                <h5>Recursos Hídricos</h5>
+                                <p>Detección temprana de fugas, auditoría de facturación y optimización técnica de sistemas de riego.</p>
+                            </div>
+                        </div>
+                        <div class="utility-card">
+                            <div class="utility-icon"><i class="fa-solid fa-leaf"></i></div>
+                            <div>
+                                <h5>Gestión de Residuos</h5>
+                                <p>Plan integral de manejo ambiental para la reducción de tarifas y fomento de la cultura de reciclaje.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="frame-visual"><img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=1000" alt="Recursos"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. ATENCIÓN DE QUEJAS Y CONVIVENCIA (RESTAURADA) -->
+    <section>
+        <div class="content-wrapper">
+            <div class="section-frame">
+                <div class="full-width-box" style="text-align: center;">
+                    <div class="section-title" style="display: inline-block; text-align: left; margin: 0 auto 30px auto; border-left: 15px solid var(--secondary); padding-left: 30px;">
+                        <p>Armonía & Paz</p>
+                        <h2 style="font-size: 40px !important;">9. Atención de Quejas y Convivencia</h2>
+                    </div>
+                    <p style="font-size: 24px; margin-bottom: 45px; max-width: 900px; margin-left: auto; margin-right: auto; font-weight: 500; line-height: 1.6;">
+                        Gestión profesional basada en la mediación directa y el cumplimiento estricto del Reglamento Interno para garantizar la paz comunitaria y el bienestar de los residentes bajo la Ley 675.
+                    </p>
+                    <div style="display: flex; justify-content: center; gap: 40px; width: 100%;">
+                        <div style="background: var(--offwhite); padding: 25px 40px; border-radius: 20px; border: 2px solid var(--pardo); flex: 1;">
+                            <i class="fa-solid fa-handshake-angle" style="font-size: 36px; color: var(--secondary); margin-bottom: 10px;"></i>
+                            <h5 style="font-size: 18px; font-weight: 800;">Mediación Directa</h5>
+                        </div>
+                        <div style="background: var(--offwhite); padding: 25px 40px; border-radius: 20px; border: 2px solid var(--pardo); flex: 1;">
+                            <i class="fa-solid fa-gavel" style="font-size: 36px; color: var(--secondary); margin-bottom: 10px;"></i>
+                            <h5 style="font-size: 18px; font-weight: 800;">Debido Proceso</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. PREPARACIÓN Y DESARROLLO DE ASAMBLEAS -->
+    <section class="bg-alt">
+        <div class="content-wrapper">
+            <div class="section-frame">
+                <div class="frame-content">
+                    <div class="section-title"><p>Logística Legal</p><h2>10. Preparación y Desarrollo de Asambleas</h2></div>
+                    <p style="font-size: 16px; margin-bottom: 20px; color: var(--slate); text-align: justify;">
+                        Realizadas conforme a la Ley 675 de 2001. La información se envía con la debida anticipación para facilitar observaciones previas y asegurar reuniones de carácter gerencial.
+                    </p>
+                    <div style="display: grid; gap: 15px;">
+                        <div style="background: var(--offwhite); padding: 15px 25px; border-radius: 15px; border: 1px solid var(--pardo);">
+                            <h5 style="font-size:16px; font-weight: 800; color: var(--secondary);"><i class="fa-solid fa-clock-rotate-left"></i> Anticipación Estratégica</h5>
+                        </div>
+                        <div style="background: var(--offwhite); padding: 15px 25px; border-radius: 15px; border: 1px solid var(--pardo);">
+                            <h5 style="font-size:16px; font-weight: 800; color: var(--secondary);"><i class="fa-solid fa-laptop-file"></i> Soporte Presencial o Virtual</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="frame-visual"><img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=1000" alt="Asamblea"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. MANEJO DOCUMENTAL -->
+    <section>
+        <div class="content-wrapper">
+            <div class="section-frame">
+                <div class="frame-visual"><img src="https://i.postimg.cc/6qq9tfsx/pexels-n-voitkevich-8062362.jpg" alt="Digital"></div>
+                <div class="frame-content" style="background: var(--primary);">
+                    <div class="section-title" style="border-left-color: var(--sky-blue);"><p style="color: var(--sky-blue)">Ecosistema Digital</p><h2 style="color: white;">11. Manejo Documental</h2></div>
+                    <p style="color: white; font-size: 19px; margin-bottom: 25px; font-weight: 300;">Gestión 100% digital basada en <strong>Dropbox Business</strong>, garantizando acceso inmediato al Consejo.</p>
+                    <ul class="check-list" style="color: white;">
+                        <li><i class="fa-solid fa-cloud-arrow-up"></i> Disponibilidad histórica 24/7.</li>
+                        <li><i class="fa-solid fa-folder-tree"></i> Categorización técnica por años.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. ENTORNO Y CARACTERÍSTICAS (BALANCEADA) -->
+    <section class="bg-alt">
+        <div class="content-wrapper">
+            <div class="section-frame">
+                <div class="full-width-box">
+                    <div class="section-title" style="text-align: center; border-left: none; padding-left: 0; margin-bottom: 30px;">
+                        <p style="letter-spacing: 8px;">Identidad PALOVERDE</p>
+                        <h2 style="font-size: 40px !important;">12. Entorno y Características</h2>
+                    </div>
+                    <div class="grid-balanced">
+                        <div class="card-balanced"><h5>Estructura & Torres</h5><p>5 Torres | 80 Apartamentos Totales diseñados para el bienestar.</p></div>
+                        <div class="card-balanced"><h5>Amenidades</h5><p>Piscina, Zonas húmedas, Gimnasio equipado y Áreas Verdes.</p></div>
+                        <div class="card-balanced"><h5>Infraestructura</h5><p>Planta eléctrica de respaldo total y amplios Parqueaderos.</p></div>
+                        <div class="card-balanced"><h5>Régimen Legal</h5><p>Sujeto al Régimen de Propiedad Horizontal vigente.</p></div>
+                    </div>
+                    <div class="banner-balanced">
+                        <div class="item-stat"><span>5</span><label>Torres</label></div>
+                        <div class="item-stat"><span>80</span><label>Apartamentos</label></div>
+                        <div class="item-stat"><i class="fa-solid fa-plug-circle-bolt" style="font-size:24px; color:var(--sky-blue)"></i><label>Planta Total</label></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 13. REFERENCIAS (SIMPLIFICADA) -->
+    <section>
+        <div class="content-wrapper">
+            <div class="section-frame">
+                <div class="frame-content">
+                    <div class="section-title"><p>Trayectoria</p><h2>13. Copropiedades Administradas</h2></div>
+                    <div class="ref-list-simple">
+                        <div class="ref-item-box"><i class="fa-solid fa-building"></i><h5>Altos de la Colina</h5></div>
+                        <div class="ref-item-box"><i class="fa-solid fa-building"></i><h5>Reserva de la Rivera</h5></div>
+                        <div class="ref-item-box"><i class="fa-solid fa-building"></i><h5>Golf Club</h5></div>
+                        <div class="ref-item-box"><i class="fa-solid fa-building"></i><h5>Plaza Campestre I</h5></div>
+                        <div class="ref-item-box" style="border-left-color: var(--sky-blue);"><i class="fa-solid fa-building-circle-check"></i><h5>Edificio Avenida 100</h5></div>
+                    </div>
+                </div>
+                <div class="frame-visual"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1000" alt="Trayectoria"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 14. PROPUESTA ECONÓMICA -->
+    <section class="bg-alt">
+        <div class="content-wrapper">
+            <div class="section-frame" style="border: 4px solid var(--secondary);">
+                <div class="fees-split">
+                    <div class="fees-main">
+                        <div class="section-title"><p>Inversión</p><h2>14. Propuesta Económica</h2></div>
+                        <div class="fee-card-refined">
+                            <span class="fee-label">Administración</span>
+                            <span class="fee-price">$4.300.000</span>
+                        </div>
+                        <div class="fee-card-refined">
+                            <span class="fee-label">Contabilidad</span>
+                            <span class="fee-price">$1.000.000</span>
+                        </div>
+                        <div style="background: #fffbe6; padding: 15px 30px; border-radius: 50px; font-weight: 700; font-size: 14px; color: #856404; text-align: center; border: 1px solid #ffe58f; margin-top: 10px;">
+                            <i class="fa-solid fa-circle-exclamation"></i> NOTA: Si el servicio se factura vía Idear Servicios S.A.S., sumará el 19% de IVA.
+                        </div>
+                    </div>
+                    <div class="expenses-box">
+                        <h4 style="font-size: 18px; color: var(--sky-blue); margin-bottom: 25px; text-transform: uppercase; font-weight: 800;">Gastos del Conjunto</h4>
+                        <ul class="check-list" style="color: white;">
+                            <li style="font-size: 13px;"><i class="fa-solid fa-circle-dot" style="font-size: 9px;"></i> Papelería y correos.</li>
+                            <li style="font-size: 13px;"><i class="fa-solid fa-circle-dot" style="font-size: 9px;"></i> Servicios públicos.</li>
+                            <li style="font-size: 14px;"><i class="fa-solid fa-circle-dot" style="font-size: 9px;"></i> Pólizas de seguros.</li>
+                            <li style="font-size: 13px;"><i class="fa-solid fa-circle-dot" style="font-size: 9px;"></i> Ciclo de mantenimiento.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="content-wrapper">
+            <div class="branding-row" style="margin-bottom: 30px;">
+                <div class="logo-capsule">
+                    <img src="https://i.postimg.cc/1ttP8hhZ/logo-idear.png" alt="IDEAR" class="logo-img">
+                </div>
+                <div class="logo-capsule">
+                    <img src="https://i.postimg.cc/j2qSRtR2/logo-palo-verde.jpg" alt="PALOVERDE" class="logo-img" style="border-radius: 10px; border: 2px solid white;">
+                </div>
+            </div>
+            <h2 style="color:white; font-size:32px; font-family: 'Playfair Display'; margin-bottom: 10px;">Liderando Paloverde hacia la Excelencia</h2>
+            <p style="opacity:0.95; font-size:13px; text-transform:uppercase; letter-spacing:5px; color: var(--sky-blue); font-weight: 900;">Andrea García | Contadora USB | Especialista P.H. | 2026</p>
+        </div>
+    </footer>
+</div>
+
+</body>
+</html>
